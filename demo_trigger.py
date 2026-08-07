@@ -14,16 +14,6 @@ Push this file in a Pull Request to trigger the full LangGraph agen pipeline:
                                ├─ Security Agent   (SEC finings)
                                └─ Code Review Agent (CS Sindings)
 
-Expected findings:
-  SEC001  – Hardcoded API key               (confidence 1.00 → direct)
-  SEC002  – eval() usage                    (confidence 1.00 → direct)
-  SEC003  – SQL injection via f-string      (confidence 0.97 → direct)
-  SEC004  – subprocess shell=True           (confidence 1.00 → direct)
-  SEC005  – Open redirect                   (confidence 0.80 → AI Agent)
-  CS001   – Long method (>50 lines)         (confidence 0.90 → AI Agent)
-  CS002   – Too many arguments              (confidence 0.95 → direct)
-  CS003   – Bare except block               (confidence 1.00 → direct)
-  CS005   – Raise without chaining          (confidence 0.80 → AI Agent)
 """
 
 import subprocess
