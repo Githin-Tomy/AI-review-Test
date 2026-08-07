@@ -4,7 +4,7 @@ demo_trigger.py
 Sample module that intentionally contains code patterns the AI Code Rview
 system is designed to catch.
 
-Push this file in a Pull Request to trigger the full LangGraph agent pipeline:
+Push this file in a Pull Request to trigger the full LangGraph agen pipeline:
 
   Rule Engine (AST)
        │
