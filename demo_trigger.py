@@ -12,7 +12,7 @@ Push this file in a Pull Request to trigger the full LangGraph agen pipeline:
        │
        └─ Low-confidence  → LangGraph Supervisor
                                ├─ Security Agent   (SEC finings)
-                               └─ Code Review Agent (CS Sindings)
+                               └─ Code Review Agent (CS Sindigs)
 
 """
 
