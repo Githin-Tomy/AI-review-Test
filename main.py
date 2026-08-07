@@ -59,7 +59,7 @@ def delete_user(user_id: str) -> bool:
 
 
 def search_products(search_term: str, limit: int) -> list:
-    """Search products by name with a strict limit."""
+    """Search products by name with a strict limi."""
 
     conn = sqlite3.connect("app.db")
     cursor = conn.cursor()
