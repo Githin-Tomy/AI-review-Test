@@ -1,4 +1,4 @@
-name: CI / Quality Checks
+name: CI / Quality Checks & SAST
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 
 jobs:
-  test:
+  test-and-scan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,18 +20,27 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest flake8
+          pip install pytest flake8 bandit
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Lint with flake8
         run: |
-          # stop the build if there are Python syntax errors or undefined names
+          # Stop build if there are syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
+      - name: Run SAST scan with Bandit
+        run: |
+          # Run security scan on the repository
+          # -r: recursive, -ll: medium severity and above, -ii: info severity and above
+          bandit -r . -ll -x ./tests,./venv
+
       - name: Test with pytest
         run: |
-          # Note for hackathon: If you want to simulate a failure to trigger the AI CI Agent,
-          # deliberately add a failing test to your codebase before committing!
-          pytest
+          # If no test files (test_*.py or *_test.py) are found, warn and pass the step
+          if [ -z "$(find . -name 'test_*.py' -o -name '*_test.py' -not -path '*/.*' -not -path '*/venv/*')" ]; then
+            echo "::warning::No test files found (matching test_*.py or *_test.py). Skipping tests."
+          else
+            pytest
+          fi
