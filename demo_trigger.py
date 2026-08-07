@@ -26,7 +26,6 @@ Expected findings:
   CS005   – Raise without chaining          (confidence 0.80 → AI Agent)
 """
 
-import os
 import subprocess
 import sqlite3
 from flask import redirect, request
