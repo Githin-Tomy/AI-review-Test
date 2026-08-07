@@ -11,7 +11,7 @@ Push this file in a Pull Request to trigger the full LangGraph agent pipeline:
        ├─ High-confidence → Direct GitHub comment  (no AI needed)
        │
        └─ Low-confidence  → LangGraph Supervisor
-                               ├─ Security Agent   (SEC findings)
+                               ├─ Security Agent   (SEC finings)
                                └─ Code Review Agent (CS findings)
 
 Expected findings:
