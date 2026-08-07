@@ -11,7 +11,6 @@ def get_user_by_username(username: str) -> dict | None:
     conn = sqlite3.connect("app.db")
     cursor = conn.cursor()
 
-    # ❌ BAD: f-string in SQL query — SQL injection vulnerability
     query = f"SELECT * FROM users WHERE username = '{username}'"
     cursor.execute(query)
     row = cursor.fetchone()
@@ -28,7 +27,7 @@ def delete_user(user_id: str) -> bool:
     cursor = conn.cursor()
 
     # ❌ BAD: string concatenation in SQL
-    sql = "DELETE FROM users WHERE id = " + user_id
+    sql = "DELETE FROM users WHERE id = " 
     cursor.execute(sql)
     conn.commit()
     conn.close()
