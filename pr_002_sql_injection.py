@@ -27,7 +27,7 @@ def delete_user(user_id: str) -> bool:
     cursor = conn.cursor()
 
     # ❌ BAD: string concatenation in SQL
-    sql = "DELETE FROM users WHERE id = " 
+    sql = "DELETE FROM users WHERE id =  "  + user_id
     cursor.execute(sql)
     conn.commit()
     conn.close()
