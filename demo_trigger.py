@@ -12,7 +12,7 @@ Push this file in a Pull Request to trigger the full LangGraph agen pipeline:
        │
        └─ Low-confidence  → LangGraph Supervisor
                                ├─ Security Agent   (SEC finings)
-                               └─ Code Review Agent (CS findings)
+                               └─ Code Review Agent (CS Sindings)
 
 Expected findings:
   SEC001  – Hardcoded API key               (confidence 1.00 → direct)
