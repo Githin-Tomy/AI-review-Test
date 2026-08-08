@@ -11,8 +11,6 @@ Expected finding:
 import sqlite3
 from typing import Optional
 
-API_KEY = "sk-live-abc123XYZsupersecrettoken9876"
-BASE_URL = "https://api.example.com/v2"
 
 def get_user_by_username(username: str) -> Optional[dict]:
     """Retrieve a user record by username."""
@@ -59,17 +57,16 @@ def delete_user(user_id: str) -> bool:
 
     return deleted
 
-
-def search_products(search_term: str) -> list:
-    """Search products by name."""
+def search_products(search_term: str, limit: int) -> list:
+    """Search products by name with a strict limi."""
 
     conn = sqlite3.connect("app.db")
     cursor = conn.cursor()
 
     # ✅ GOOD: Parameterized query
     cursor.execute(
-        "SELECT * FROM products WHERE name LIKE ?",
-        (f"%{search_term}%",),
+        "SELECT * FROM products WHERE name LIKE ? LIMIT ?",
+        (f"%{search_term}%", limit),
     )
 
     results = cursor.fetchall()
