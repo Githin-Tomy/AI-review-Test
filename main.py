@@ -58,7 +58,7 @@ def delete_user(user_id: str) -> bool:
     return deleted
 
 
-def search_products(search_term: str, limit: int) -> list:
+def search_products(search_term: str) -> list:
     """Search products by name with a strict limi."""
 
     conn = sqlite3.connect("app.db")
@@ -67,7 +67,7 @@ def search_products(search_term: str, limit: int) -> list:
     # ✅ GOOD: Parameterized query
     cursor.execute(
         "SELECT * FROM products WHERE name LIKE ? LIMIT ?",
-        (f"%{search_term}%", limit),
+        (f"%{search_term}%"),
     )
 
     results = cursor.fetchall()
